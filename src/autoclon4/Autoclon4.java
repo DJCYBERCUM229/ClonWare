@@ -35,7 +35,8 @@ public class Autoclon4 extends PApplet {
 	int iterations = 0;
 	int delay = 6;
 	int legitChance = 6;
-	int npsActivate = 0;
+	int rakeOSMS = 0; // rake strum overstrum protection milliseconds
+	int rakeMS = 0;
 	int rakeAmnt = 2;
 	boolean legitOvertap = false;
 	boolean overtapPress = false;
@@ -45,7 +46,7 @@ public class Autoclon4 extends PApplet {
 	boolean justBound = false;
 
 	public void settings() {
-		size(400, 230);
+		size(400, 260);
 	}
 
 	public void setup() {
@@ -62,35 +63,42 @@ public class Autoclon4 extends PApplet {
 		consolas = createFont("Consolas", 2, true);
 		calibri = createFont("Calibri", 2, true);
 
-		elements.add(new TextElement(this, width / 2 - 59, 210, 100, 15, "DJCYBERCUM229", 10, segoeUI));
-		elements.add(new TextElement(this, 19, 210, 72, 15, "ClonWare (v1.0)", 10, segoeUI));
+		elements.add(new TextElement(this, width / 2 - 59, height - 20, 100, 15, "DJCYBERCUM229", 10, segoeUI));
+		elements.add(new TextElement(this, 19, height - 20, 72, 15, "ClonWare (v1.0)", 10, segoeUI));
 
 		elements.add(new TextElement(this, width - 138, 5, 87, 15, "LEGIT CHECK", 15, segoeUI_i));
 		elements.add(new TextElement(this, "iterations", 65, 29, 16, 16, iterations + "", 16, consolas));
 		elements.add(new TextElement(this, "delay", 65, 54, 16, 16, delay + " MS", 16, consolas));
 		elements.add(new TextElement(this, "legitCheck", width - 145, 32, 96, 15, "1 / " + legitChance + " CHANCE", 15, consolas));
-		elements.add(new TextElement(this, "extraRakeCheck", width / 2 - 60, 140, 123, 15, npsActivate + " MS THRESHOLD", 15, consolas));
-		elements.add(new TextElement(this, "extraRake", width / 2 - 60, 140, 123, 15, rakeAmnt + "/" + rakeAmnt + " RAKE", 15, consolas));
+		elements.add(new TextElement(this, "extraRakeOSCheck", width / 2 - 60, 140, 123, 15, rakeMS + " ANTI-OVERSTRUM MS", 15, consolas));
+		elements.add(new TextElement(this, "extraRakeCheck", width / 2 - 60, 170, 123, 15, rakeMS + " FLICK MS", 15, consolas));
+		elements.add(new TextElement(this, "extraRake", width / 2 - 60, 200, 123, 15, rakeAmnt + "/" + rakeAmnt + " RAKE", 15, consolas));
 		elements.add(new TextElement(this, 46, 5, 56, 15, "OVERTAP", 15, segoeUI_i));
 
 		elements.add(new Checkbox(this, "legitActivate", 52, 80, 45, 12, "LEGIT", 11, segoeUI));
 		elements.add(new Checkbox(this, "pressActivate", 7, 95, 69, 12, "ON PRESS", 11, segoeUI));
 		elements.add(new Checkbox(this, "releaseActivate", 76, 95, 77, 12, "ON RELEASE", 11, segoeUI));
-		elements.add(new Button(this, "rebinder", width - 101, 210, 80, 15, "REBIND", 14, segoeUI));
+		elements.add(new Button(this, "rebinder", width - 101, height - 20, 80, 15, "REBIND", 14, segoeUI));
 		elements.add(new Checkbox(this, "rakeOverrideActivate", width / 2 - 47, 119, 96, 12, "RAKE OVERRIDE", 11, segoeUI));
 
 		elements.add(new HelpBox(this, 110, 9, 12, 12, 11, calibri, "Overtaps, what else do", "you need to know."));
 		elements.add(new HelpBox(this, 110, 80, 12, 12, 11, calibri, "Makes generated overtap", "randomized. Change the", "chance of which it", "activates to the right", "of the overtap controls."));
 		elements.add(new HelpBox(this, 160, 95, 12, 12, 11, calibri, "Sets what causes overtap", "to activate."));
 		elements.add(new HelpBox(this, width / 2 + 56, 119, 12, 12, 11, calibri, "Changes the rake", "of your guitar.", "(Note: you will", "need to unbind", "your guitar", "strumming in", "Clone Hero.)"));
+		elements.add(new HelpBox(this, width / 2 + 120, 142, 12, 12, 11, calibri, "Threshold to", "block strum", "inputs for", "guitars that", "already rake."));
+		elements.add(new HelpBox(this, width / 2 + 80, 172, 12, 12, 11, calibri, "Threshold to detect", "flicking the strumbar", "to start a rake strum."));
 		elements.add(new Button(this, "overtapAddOne", 88, 27, 22, 22, "+1", 15, consolas));
 		elements.add(new Button(this, "overtapSubOne", 36, 27, 22, 22, "-1", 15, consolas));
 		elements.add(new Button(this, "overtapMSAddOne", 95, 52, 22, 22, "+1", 15, consolas));
 		elements.add(new Button(this, "overtapMSSubOne", 29, 52, 22, 22, "-1", 15, consolas));
 		elements.add(new Button(this, "legitOvertapAddOne", width - 38, 27, 22, 22, "+1", 15, consolas));
 		elements.add(new Button(this, "legitOvertapSubOne", width - 177, 27, 22, 22, "-1", 15, consolas));
-		elements.add(new Button(this, "extraRakeSubOne", width / 2 - 92, 137, 22, 22, "-1", 15, consolas));
-		elements.add(new Button(this, "extraRakeAddOne", width / 2 + 73, 137, 22, 22, "+1", 15, consolas));
+		elements.add(new Button(this, "extraRakeOSMSSubOne", width / 2 - 112, 137, 22, 22, "-1", 15, consolas));
+		elements.add(new Button(this, "extraRakeOSMSAddOne", width / 2 + 92, 137, 22, 22, "+1", 15, consolas));
+		elements.add(new Button(this, "extraRakeMSSubOne", width / 2 - 72, 167, 22, 22, "-1", 15, consolas));
+		elements.add(new Button(this, "extraRakeMSAddOne", width / 2 + 52, 167, 22, 22, "+1", 15, consolas));
+		elements.add(new Button(this, "extraRakeSubOne", width / 2 - 65, 197, 22, 22, "-1", 15, consolas));
+		elements.add(new Button(this, "extraRakeAddOne", width / 2 + 42, 197, 22, 22, "+1", 15, consolas));
 
 		elements.add(new TextElement(this, width - 145, 57, 97, 13, "Changes the chance", 12, segoeUI_i));
 		elements.add(new TextElement(this, width - 164, 72, 137, 13, "legit overtap would activate.", 12, segoeUI_i));
@@ -141,7 +149,7 @@ public class Autoclon4 extends PApplet {
 		} else {
 			stroke(175);
 			strokeWeight(1);
-			line(14, 206, width - 14, 206);
+			line(14, height - 24, width - 14, height - 24);
 			line(0, 113, width, 113);
 
 			for (int i = 0; i < elements.size(); i++) {
@@ -199,8 +207,11 @@ public class Autoclon4 extends PApplet {
 		case "legitCheck":
 			text.text = "1 / " + legitChance + " CHANCE";
 			break;
+		case "extraRakeOSCheck":
+			text.text = rakeMS + " ANTI-OVERSTRUM MS";
+			break;
 		case "extraRakeCheck":
-			text.text = npsActivate + " MS THRESHOLD";
+			text.text = rakeMS + " FLICK MS";
 			break;
 		}
 	}
@@ -244,11 +255,25 @@ public class Autoclon4 extends PApplet {
 			legitChance = max(legitChance, 1);
 			break;
 		case "extraRakeAddOne":
-			npsActivate++;
+			rakeAmnt++;
 			break;
 		case "extraRakeSubOne":
-			npsActivate--;
-			npsActivate = max(npsActivate, 0);
+			rakeAmnt--;
+			rakeAmnt = max(rakeAmnt, 1);
+			break;
+		case "extraRakeOSMSAddOne":
+			rakeOSMS++;
+			break;
+		case "extraRakeOSMSSubOne":
+			rakeOSMS--;
+			rakeMS = max(rakeMS, 1);
+			break;
+		case "extraRakeMSAddOne":
+			rakeMS++;
+			break;
+		case "extraRakeMSSubOne":
+			rakeMS--;
+			rakeMS = max(rakeMS, 1);
 			break;
 		case "rebinder":
 			if (!justBound) {
@@ -287,43 +312,79 @@ public class Autoclon4 extends PApplet {
 								}
 							}
 
-							if (buttonPressed != -1 && buttonPressed < 5) {
-								if ((value > 0 && !lastButtons[buttonPressed] && overtapPress) || (value == 0 && lastButtons[buttonPressed] && overtapRelease)) {
-									lastButtons[buttonPressed] = value > 0;
+							if (buttonPressed != -1) {
+								if (buttonPressed < 5) {
+									if ((value > 0 && !lastButtons[buttonPressed] && overtapPress) || (value == 0 && lastButtons[buttonPressed] && overtapRelease)) {
+										lastButtons[buttonPressed] = value > 0;
 
-									int keyCode = KeyEvent.getExtendedKeyCodeForChar(buttonKeys[buttonPressed]);
+										int keyCode = KeyEvent.getExtendedKeyCodeForChar(buttonKeys[buttonPressed]);
 
-									new Thread(new Runnable() {
-										@Override
-										public void run() {
-											Robot robot = null;
-											try {
-												robot = new Robot();
-											} catch (AWTException e) {
-												// TODO Auto-generated catch block
-												e.printStackTrace();
-											}
+										new Thread(new Runnable() {
+											@Override
+											public void run() {
+												Robot robot = null;
+												try {
+													robot = new Robot();
+												} catch (AWTException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
 
-											robot.delay(10);
-											if (legitOvertap) {
-												if (random(1) <= 1f / legitChance) {
-													for (int n = 0; n < iterations + round(random(-1, 1)); n++) {
+												robot.delay(10);
+												if (legitOvertap) {
+													if (random(1) <= 1f / legitChance) {
+														for (int n = 0; n < iterations + round(random(-1, 1)); n++) {
+															robot.keyPress(keyCode);
+															robot.delay(floor(delay / 2f));
+															robot.keyRelease(keyCode);
+															robot.delay(ceil(delay / 2f));
+														}
+													}
+												} else {
+													for (int n = 0; n < iterations; n++) {
 														robot.keyPress(keyCode);
 														robot.delay(floor(delay / 2f));
 														robot.keyRelease(keyCode);
 														robot.delay(ceil(delay / 2f));
 													}
 												}
-											} else {
-												for (int n = 0; n < iterations; n++) {
-													robot.keyPress(keyCode);
-													robot.delay(floor(delay / 2f));
-													robot.keyRelease(keyCode);
-													robot.delay(ceil(delay / 2f));
-												}
 											}
-										}
-									}).start();
+										}).start();
+									}
+								} else {
+									int keyCode = KeyEvent.getExtendedKeyCodeForChar(buttonKeys[buttonPressed]);
+									if (value > 0) {
+										new Thread(new Runnable() {
+											@Override
+											public void run() {
+												Robot robot = null;
+												try {
+													robot = new Robot();
+												} catch (AWTException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+
+												robot.keyPress(keyCode);
+											}
+										}).start();
+									} else {
+
+										new Thread(new Runnable() {
+											@Override
+											public void run() {
+												Robot robot = null;
+												try {
+													robot = new Robot();
+												} catch (AWTException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+
+												robot.keyRelease(keyCode);
+											}
+										}).start();
+									}
 								}
 							}
 						}
