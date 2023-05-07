@@ -7,4 +7,7 @@ ClonWare is a java port/extension of AutoClon by DJCyberCum228
 # Join the Discord! https://discord.gg/uUDf2ceBV2
 
 # TODO:
-[ ] Make a todo :)
+```
+[x] Make a todo :)
+[ ] Add replay system/editor
+```
