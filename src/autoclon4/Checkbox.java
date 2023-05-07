@@ -9,6 +9,11 @@ public class Checkbox extends Button {
 	public Checkbox(PApplet parent, String name, int x, int y, int w, int h, String text, int textSize, PFont font) {
 		super(parent, name, x, y, w, h, text, textSize, font);
 	}
+	
+	public Checkbox(PApplet parent, String name, int x, int y, int w, int h, String text, int textSize, PFont font, boolean checked) {
+		this(parent, name, x, y, w, h, text, textSize, font);
+		this.checked = checked;
+	}
 
 	@Override
 	public void update() {
@@ -42,7 +47,7 @@ public class Checkbox extends Button {
 			parent.line(x + h / 2, y + h, x + h, y);
 		}
 		
-		parent.fill(0);
+		parent.fill(250);
 		parent.textFont(font);
 		parent.textSize(textSize);
 		parent.textAlign(PApplet.CENTER, PApplet.CENTER);

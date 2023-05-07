@@ -1,55 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="lib" path="lib/base/core/ant-launcher.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="autoclon4/lib/base/core"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="lib/base/core/ant.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="autoclon4/lib/base/core"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="lib/base/core/jna-platform.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="autoclon4/lib/base/core"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="lib/base/core/jna.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="autoclon4/lib/base/core"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="lib/user/G4P/G4P.jar" sourcepath="lib/user/G4P/src">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/lib/user/G4P/reference/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="autoclon4/lib/user/G4P"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="lib/user/GameControlPlus/GameControlPlus.jar" sourcepath="lib/user/GameControlPlus/src">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/lib/user/GameControlPlus/reference/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="autoclon4/lib/user/GameControlPlus"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/base/core/core.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/gluegen-rt.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/gluegen-rt-natives-linux-aarch64.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/gluegen-rt-natives-linux-amd64.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/gluegen-rt-natives-linux-armv6hf.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/gluegen-rt-natives-linux-i586.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/gluegen-rt-natives-macosx-universal.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/gluegen-rt-natives-windows-amd64.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/gluegen-rt-natives-windows-i586.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/jogl-all.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/jogl-all-natives-linux-aarch64.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/jogl-all-natives-linux-amd64.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/jogl-all-natives-linux-armv6hf.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/jogl-all-natives-linux-i586.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/jogl-all-natives-macosx-universal.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/jogl-all-natives-windows-amd64.jar"/>
-	<classpathentry kind="lib" path="lib/base/core/jogl-all-natives-windows-i586.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/de.ralleytn.plugins.jinput.xinput-1.1.0.jar"/>
+	<classpathentry kind="lib" path="libs/de.ralleytn.wrapper.microsoft.xinput-1.1.0.jar"/>
+	<classpathentry kind="lib" path="libs/jinput-2.0.7.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="autoclon4/libs"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/jinput-platform-2.0.7-natives-linux.jar"/>
+	<classpathentry kind="lib" path="libs/jinput-platform-2.0.7-natives-osx.jar"/>
+	<classpathentry kind="lib" path="libs/jinput-platform-2.0.7-natives-windows.jar"/>
+	<classpathentry kind="lib" path="libs/jna-4.5.1.jar"/>
+	<classpathentry kind="lib" path="libs/jutils-1.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/core.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/gluegen-rt-natives-linux-aarch64.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/gluegen-rt-natives-linux-amd64.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/gluegen-rt-natives-linux-armv6hf.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/gluegen-rt-natives-linux-i586.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/gluegen-rt-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/gluegen-rt-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/gluegen-rt-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/jogl-all.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/jogl-all-natives-linux-aarch64.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/jogl-all-natives-linux-amd64.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/jogl-all-natives-linux-armv6hf.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/jogl-all-natives-linux-i586.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/jogl-all-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/jogl-all-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="libs/base/core/jogl-all-natives-windows-i586.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

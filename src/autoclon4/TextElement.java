@@ -25,7 +25,7 @@ public class TextElement extends UIElement {
 	@Override
 	public void render() {
 		parent.textFont(font);
-		parent.fill(0);
+		parent.fill(250);
 		parent.textSize(textSize);
 		parent.textAlign(PApplet.CENTER, PApplet.CENTER);
 		parent.text(text, x + w / 2, y + h / 2);
